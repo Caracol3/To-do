@@ -1,15 +1,15 @@
 import { useState } from "react";
 import "./App.css";
+import { Task } from "./components/Task";
 
-
-type Task = {
+export type SingleTask = {
   id: number;
   title: string;
   isDone: boolean;
 };
 
 function App() {
-  const firstTasks: Task[] = [
+  const firstTasks: SingleTask[] = [
     {
       id: 1,
       title: "first task",
@@ -22,7 +22,7 @@ function App() {
     },
   ];
 
-  const [tasks, setTasks] = useState<Task[]>(firstTasks);
+  const [tasks, setTasks] = useState<SingleTask[]>(firstTasks);
 
   const [newTask, setNewTask] = useState<string>("");
   console.log(newTask);
@@ -54,12 +54,10 @@ function App() {
           Add
         </button>
       </form>
+      
       <ul className="list-group">
         {tasks.map((task) => (
-          <li className="list-group-item d-flex justify-content-between ">
-            {task.title}
-            <input type="checkbox" />
-          </li>
+          <Task task={task} />
         ))}
       </ul>
     </>
